@@ -1,0 +1,744 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz B.U.T Carrières Sociales Option Animation Sociale et Socio-culturelle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+            background: linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+                        linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+                        linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+            background-size: 20px 20px;
+            background-color: #000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border: 4px solid #0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #0f0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f0;
+            text-shadow: 2px 2px #000;
+            margin-bottom: 30px;
+            font-size: 24px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+            }
+            to {
+                text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
+            }
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #333;
+            border: 2px solid #0f0;
+            color: #0f0;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        .tab:hover {
+            background-color: #0f0;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .tab.active {
+            background-color: #0f0;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #0f0;
+            border-radius: 5px;
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            font-family: 'Press Start 2P', cursive;
+            padding: 10px;
+            background-color: #333;
+            border: 2px solid #0f0;
+            color: #0f0;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        button:hover {
+            background-color: #0f0;
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #0f0;
+            display: none;
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+
+        .pixel-art {
+            text-align: center;
+            font-size: 14px;
+            line-height: 1;
+            white-space: pre;
+            color: #0f0;
+            margin: 20px 0;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
+            20% { color: #ffff00; text-shadow: 0 0 5px #ffff00; }
+            40% { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+            60% { color: #00ffff; text-shadow: 0 0 5px #00ffff; }
+            80% { color: #0000ff; text-shadow: 0 0 5px #0000ff; }
+            100% { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+        }
+
+        .rainbow-text {
+            animation: rainbow 5s infinite;
+        }
+
+        .help-content {
+            text-align: left;
+            padding: 20px;
+        }
+
+        #start-screen {
+            text-align: center;
+            padding: 40px;
+        }
+
+        #start-button {
+            font-size: 24px;
+            padding: 20px 40px;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .main-face {
+            font-size: 20px;
+            line-height: 1;
+            margin: 40px 0;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .about-content {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .about-section {
+            margin-bottom: 30px;
+            border: 2px solid #0f0;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(0, 255, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .about-section:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .about-section h2 {
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+            margin-bottom: 15px;
+        }
+
+        .about-section h3 {
+            color: #0f0;
+            margin-top: 15px;
+        }
+
+        .about-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .about-section li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .about-section li:before {
+            content: ">";
+            color: #0f0;
+            position: absolute;
+            left: 0;
+        }
+
+        .thanks-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #0f0;
+            border-radius: 5px;
+            background-color: rgba(0, 255, 0, 0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quizz B.U.T Carrières Sociales Option Animation Sociale et Socio-culturelle</h1>
+        
+        <div id="start-screen" class="content active">
+                           <div class="ascii-face">
+⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢠⣿⠟⠉⠀⠀⠉⠻⣿⣿⣿⣿⣿⠟⠉⠀⠀⠉⢿⣆⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⣿⠏⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⡏⠀⠀⠀⠀⠀⠈⣿⣧⠀⠀⠀⠀
+⠀⠀⠀⣼⡏⠀⠀⣤⣤⣤⣤⣤⣼⣿⣿⣿⣧⣤⣤⣤⣤⠀⠀⢹⣿⠀⠀⠀⠀
+⠀⠀⠀⢿⣇⠀⠀⠈⠉⠉⠉⠉⢻⣿⣿⣿⡏⠉⠉⠉⠉⠀⠀⣸⡿⠀⠀⠀⠀
+⠀⠀⠀⠈⢿⣆⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⣰⡿⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠙⢷⣄⠀⠀⢀⣾⣿⣿⣿⣿⣿⣦⠀⠀⢀⣾⠟⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠙⢿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⠟⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀
+                            </div>
+            <button id="start-button" onclick="startQuizz()">Start</button>
+        </div>
+        <div id="main-content" style="display: none;">
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('quizz
+')">Quizz
+</div>
+                <div class="tab" onclick="showTab('about')">À propos</div>
+                <div class="tab" onclick="showTab('help')">Aide</div>
+            </div>
+
+            <div id="quizz" class="content active">
+                <div id="question-container" class="question"></div>
+                <div id="result" class="result"></div>
+            </div>
+
+            <div id="about" class="content">
+                <div class="about-content">
+                    <div class="about-section">
+                        <h2>Parcours Professionnel</h2>
+                        <p>Formation : B.U.T Carrières Sociales Option Animation Sociale et Socio-culturelle (2022-2025)</p>
+                        <h3>Expériences Professionnelles</h3>
+                        <p>• Stage à L'Oiseau Bleu (2023) :</p>
+                        <ul>
+                            <li>Animation d'ateliers créatifs et culturels</li>
+                            <li>Développement de projets participatifs</li>
+                            <li>Création de liens sociaux intergénérationnels</li>
+                            <li>Organisation d'événements communautaires</li>
+                            <li>Accompagnement des publics en difficulté</li>
+                            <li>Mise en place d'activités inclusives</li>
+                        </ul>
+                        <p>• Mairie de Grenoble :</p>
+                        <ul>
+                            <li>Participation active à la Fête des Tuiles</li>
+                            <li>Coordination avec les acteurs locaux</li>
+                            <li>Animation d'activités culturelles</li>
+                            <li>Gestion d'équipes de bénévoles</li>
+                            <li>Organisation d'événements de grande envergure</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>Compétences Développées</h2>
+                        <h3>Animation et Gestion de Projets</h3>
+                        <ul>
+                            <li>Conception et animation d'activités socioculturelles</li>
+                            <li>Gestion de projets participatifs</li>
+                            <li>Organisation d'événements</li>
+                            <li>Animation de groupes multiculturels</li>
+                            <li>Développement de projets innovants</li>
+                        </ul>
+
+                        <h3>Communication et Médiation</h3>
+                        <ul>
+                            <li>Techniques d'animation de groupe</li>
+                            <li>Gestion des conflits</li>
+                            <li>Communication interculturelle</li>
+                            <li>Médiation sociale</li>
+                            <li>Création de supports pédagogiques</li>
+                        </ul>
+
+                        <h3>Développement Local</h3>
+                        <ul>
+                            <li>Création de partenariats</li>
+                            <li>Mobilisation des habitants</li>
+                            <li>Diagnostic territorial</li>
+                            <li>Développement de réseaux locaux</li>
+                            <li>Animation de territoire</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="help" class="content help-content">
+                <div class="about-section">
+                    <h2>Guide des Compétences du B.U.T</h2>
+                    
+                    <h3>1. Conception et Animation</h3>
+                    <ul>
+                        <li>Méthodologie de projet en animation socioculturelle</li>
+                        <li>Techniques d'animation de groupe</li>
+                        <li>Création d'activités inclusives</li>
+                        <li>Adaptation des activités aux publics</li>
+                        <li>Gestion de la dynamique de groupe</li>
+                        <li>Innovation dans les pratiques d'animation</li>
+                    </ul>
+
+                    <h3>2. Médiation et Communication</h3>
+                    <ul>
+                        <li>Gestion des dynamiques de groupe</li>
+                        <li>Résolution de conflits</li>
+                        <li>Communication interculturelle</li>
+                        <li>Techniques de médiation sociale</li>
+                        <li>Adaptation du discours aux différents publics</li>
+                        <li>Création d'espaces de dialogue</li>
+                    </ul>
+
+                    <h3>3. Développement Social</h3>
+                    <ul>
+                        <li>Analyse des besoins sociaux</li>
+                        <li>Mobilisation des habitants</li>
+                        <li>Création de partenariats</li>
+                        <li>Évaluation de projets sociaux</li>
+                        <li>Développement du pouvoir d'agir</li>
+                        <li>Animation de territoire</li>
+                    </ul>
+
+                    <h3>4. Cours et Acquisitions</h3>
+                    <ul>
+                        <li>Sociologie des organisations</li>
+                        <li>Psychologie sociale</li>
+                        <li>Méthodologie de projet</li>
+                        <li>Politiques sociales et territoriales</li>
+                        <li>Droit et institutions</li>
+                        <li>Expression et communication</li>
+                        <li>Langues étrangères appliquées</li>
+                        <li>Gestion et administration</li>
+                    </ul>
+
+                    <h3>Conseils pour le Quizz</h3>
+                    <p>• Prenez le temps de bien lire chaque question 📚</p>
+                    <p>• Réfléchissez aux situations concrètes 🎯</p>
+                    <p>• Utilisez votre expérience pratique 💡</p>
+                    <p>• Analysez toutes les options avant de répondre 🤔</p>
+                    <p>• Pensez aux enjeux de l'animation socioculturelle 🌟</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="thanks-section" style="display: none;">
+            <h2>Remerciements</h2>
+            <p>Je tiens à remercier sincèrement Madame Adam pour son accompagnement et son soutien tout au long de ma formation.</p>
+            <p>Merci d'avoir participé à ce quizz ! 🌟</p>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            // Questions théoriques (15)
+            {
+                question: "Dans le cadre de la conception d'un projet d'animation socioculturelle, quelle approche méthodologique privilégieriez-vous ?",
+                options: [
+                    "Une approche descendante basée sur l'expertise professionnelle",
+                    "Une démarche participative impliquant les habitants dès le diagnostic",
+                    "Une planification stricte sans phase de consultation",
+                    "Une reproduction de projets existants"
+                ],
+                correct: 1,
+                explanation: "La démarche participative est fondamentale car elle permet l'implication des habitants dès la phase de diagnostic, garantissant ainsi la pertinence et l'appropriation du projet par les bénéficiaires."
+            },
+            {
+                question: "Comment analysez-vous la notion de développement du pouvoir d'agir dans l'animation socioculturelle ?",
+                options: [
+                    "C'est uniquement une approche théorique",
+                    "C'est un processus d'accompagnement visant l'autonomisation et l'émancipation des individus",
+                    "C'est une forme de contrôle social",
+                    "C'est une approche dépassée"
+                ],
+                correct: 1,
+                explanation: "Le développement du pouvoir d'agir est un processus essentiel qui vise à rendre les individus acteurs de leur vie et de leur environnement, conformément aux fondements de l'animation socioculturelle."
+            },
+            {
+                question: "Quelle est la place de la médiation sociale dans les politiques territoriales ?",
+                options: [
+                    "Un outil secondaire de gestion des conflits",
+                    "Un levier stratégique de cohésion sociale et de développement territorial",
+                    "Une simple formalité administrative",
+                    "Une approche obsolète"
+                ],
+                correct: 1,
+                explanation: "La médiation sociale est un levier stratégique car elle permet de créer du lien, de prévenir les conflits et de contribuer au développement harmonieux du territoire."
+            },
+            {
+                question: "Comment définiriez-vous le rôle de l'animateur dans la gouvernance participative ?",
+                options: [
+                    "Un simple exécutant des décisions",
+                    "Un facilitateur qui accompagne les processus de décision collective",
+                    "Un décideur unique",
+                    "Un observateur passif"
+                ],
+                correct: 1,
+                explanation: "L'animateur joue un rôle de facilitateur, accompagnant les processus de décision collective tout en garantissant la participation effective de chacun."
+            },
+            {
+                question: "Quelle approche adopteriez-vous pour évaluer l'impact social d'un projet ?",
+                options: [
+                    "Une évaluation uniquement quantitative",
+                    "Une démarche d'évaluation participative combinant indicateurs quantitatifs et qualitatifs",
+                    "Pas d'évaluation nécessaire",
+                    "Une évaluation externe uniquement"
+                ],
+                correct: 1,
+                explanation: "L'évaluation participative permet une analyse complète de l'impact, intégrant à la fois des données mesurables et le ressenti des participants."
+            },
+            {
+                question: "Comment articulez-vous les différentes échelles territoriales dans un projet d'animation ?",
+                options: [
+                    "En se concentrant uniquement sur le niveau local",
+                    "En créant des synergies entre les échelons locaux, départementaux et régionaux",
+                    "En ignorant les échelons supérieurs",
+                    "En suivant uniquement les directives nationales"
+                ],
+                correct: 1,
+                explanation: "L'articulation des différentes échelles territoriales permet une cohérence des actions et une optimisation des ressources disponibles."
+            },
+            {
+                question: "Quelle est votre compréhension des enjeux de l'éducation populaire aujourd'hui ?",
+                options: [
+                    "Une approche dépassée",
+                    "Un pilier fondamental de l'émancipation et de la transformation sociale",
+                    "Un simple outil de loisirs",
+                    "Une méthode réservée aux enfants"
+                ],
+                correct: 1,
+                explanation: "L'éducation populaire reste un pilier fondamental, permettant l'émancipation individuelle et collective à travers des démarches participatives et réflexives."
+            },
+            {
+                question: "Comment intégrez-vous la dimension interculturelle dans vos projets ?",
+                options: [
+                    "En évitant les différences culturelles",
+                    "En valorisant la diversité comme une richesse et un levier d'action",
+                    "En imposant une culture dominante",
+                    "En séparant les groupes culturels"
+                ],
+                correct: 1,
+                explanation: "La dimension interculturelle doit être valorisée comme une richesse, favorisant le dialogue et l'enrichissement mutuel."
+            },
+            {
+                question: "Quelle approche privilégiez-vous dans l'analyse des besoins sociaux ?",
+                options: [
+                    "Une analyse uniquement statistique",
+                    "Une démarche participative combinant données objectives et expression des habitants",
+                    "Une approche intuitive",
+                    "Une copie d'autres territoires"
+                ],
+                correct: 1,
+                explanation: "L'analyse des besoins sociaux nécessite une approche mixte, combinant données objectives et expression directe des habitants pour une compréhension complète."
+            },
+            {
+                question: "Comment concevez-vous l'innovation sociale dans l'animation ?",
+                options: [
+                    "Comme un effet de mode",
+                    "Comme un processus collectif de transformation sociale",
+                    "Comme une contrainte administrative",
+                    "Comme une simple modernisation technique"
+                ],
+                correct: 1,
+                explanation: "L'innovation sociale est un processus collectif qui permet de répondre de manière créative et efficace aux besoins sociaux émergents."
+            },
+            {
+                question: "Quelle est votre approche de la participation des habitants ?",
+                options: [
+                    "Une simple consultation formelle",
+                    "Un processus continu d'implication et de co-construction",
+                    "Une perte de temps",
+                    "Une obligation réglementaire"
+                ],
+                correct: 1,
+                explanation: "La participation des habitants doit être un processus continu, permettant une véritable co-construction des projets et des décisions."
+            },
+            {
+                question: "Comment intégrez-vous le développement durable dans vos projets ?",
+                options: [
+                    "Comme une contrainte supplémentaire",
+                    "Comme une dimension transversale essentielle",
+                    "Comme un aspect facultatif",
+                    "Comme une simple mode"
+                ],
+                correct: 1,
+                explanation: "Le développement durable doit être intégré de manière transversale, touchant tant les aspects environnementaux que sociaux et économiques."
+            },
+            {
+                question: "Quelle est votre vision du partenariat dans l'animation socioculturelle ?",
+                options: [
+                    "Une contrainte administrative",
+                    "Une stratégie essentielle de développement et d'action",
+                    "Une perte d'autonomie",
+                    "Un aspect secondaire"
+                ],
+                correct: 1,
+                explanation: "Le partenariat est une stratégie essentielle permettant de mutualiser les ressources et de créer des synergies positives."
+            },
+            {
+                question: "Comment abordez-vous la question du numérique dans l'animation ?",
+                options: [
+                    "Comme un obstacle",
+                    "Comme un outil d'innovation et d'inclusion sociale",
+                    "Comme une menace",
+                    "Comme un gadget"
+                ],
+                correct: 1,
+                explanation: "Le numérique doit être appréhendé comme un outil d'innovation permettant de nouvelles formes d'engagement et de participation."
+            },
+            {
+                question: "Quelle place accordez-vous à la formation continue dans votre pratique ?",
+                options: [
+                    "Une obligation contraignante",
+                    "Un processus essentiel d'amélioration continue",
+                    "Une perte de temps",
+                    "Un luxe superflu"
+                ],
+                correct: 1,
+                explanation: "La formation continue est essentielle pour maintenir et développer ses compétences face aux évolutions du secteur."
+            },
+
+            // Questions pratiques (5)
+            {
+                question: "Face à un conflit entre jeunes lors d'une animation, quelle serait votre approche immédiate ?",
+                options: [
+                    "Exclure les perturbateurs",
+                    "Utiliser la situation comme opportunité pédagogique de médiation",
+                    "Ignorer le conflit",
+                    "Arrêter l'activité"
+                ],
+                correct: 1,
+                explanation: "La médiation permet de transformer le conflit en opportunité d'apprentissage et de développement des compétences sociales."
+            },
+            {
+                question: "Dans le cadre de la Fête des Tuiles, comment géreriez-vous la coordination des bénévoles ?",
+                options: [
+                    "Laisser faire spontanément",
+                    "Mettre en place un système participatif de coordination et de formation",
+                    "Imposer des directives strictes",
+                    "Déléguer totalement"
+                ],
+                correct: 1,
+                explanation: "Une coordination participative permet de responsabiliser les bénévoles tout en assurant l'efficacité de l'organisation."
+            },
+            {
+                question: "Comment adapteriez-vous une activité pour un groupe intergénérationnel ?",
+                options: [
+                    "Proposer des activités séparées",
+                    "Concevoir des activités valorisant les compétences de chaque génération",
+                    "Simplifier au maximum",
+                    "Suivre un programme standard"
+                ],
+                correct: 1,
+                explanation: "Les activités intergénérationnelles doivent permettre à chaque génération d'apporter sa contribution et de valoriser ses compétences."
+            },
+            {
+                question: "Dans un projet avec L'Oiseau Bleu, comment favoriseriez-vous l'inclusion sociale ?",
+                options: [
+                    "Créer des groupes de niveau",
+                    "Développer des activités adaptées et inclusives",
+                    "Séparer les publics",
+                    "Standardiser les activités"
+                ],
+                correct: 1,
+                explanation: "L'inclusion sociale nécessite une adaptation des activités tout en maintenant une mixité des publics."
+            },
+            {
+                question: "Comment évalueriez-vous concrètement l'impact d'un projet d'animation de quartier ?",
+                options: [
+                    "Compter uniquement les participants",
+                    "Combiner observations, témoignages et indicateurs mesurables",
+                    "Attendre les retours spontanés",
+                    "Se fier aux statistiques générales"
+                ],
+                correct: 1,
+                explanation: "Une évaluation complète nécessite de combiner différentes approches pour saisir tous les aspects de l'impact du projet."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuizz() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            displayQuestion();
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`.tab:nth-child(${tabName === 'quizz' ? 1 : tabName === 'about' ? 2 : 3})`).classList.add('active');
+        }
+
+        function displayQuestion() {
+            const questionData = questions[currentQuestion];
+            const questionContainer = document.getElementById('question-container');
+            
+            let optionsHtml = questionData.options.map((option, index) => 
+                `<button onclick="checkAnswer(${index})">${option}</button>`
+            ).join('');
+
+            questionContainer.innerHTML = `
+                <h2>Question ${currentQuestion + 1}/${questions.length}</h2>
+                <p>${questionData.question}</p>
+                <div class="options">
+                    ${optionsHtml}
+                </div>
+            `;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const questionData = questions[currentQuestion];
+            const isCorrect = selectedIndex === questionData.correct;
+            
+            if (isCorrect) {
+                score++;
+            }
+
+            const questionContainer = document.getElementById('question-container');
+            questionContainer.innerHTML += `
+                <div style="margin-top: 20px; padding: 10px; border: 2px solid ${isCorrect ? '#0f0' : '#f00'}">
+                    <p>${isCorrect ? 'Correct!' : 'Incorrect.'}</p>
+                    <p>${questionData.explanation}</p>
+                </div>
+                <button onclick="nextQuestion()" style="margin-top: 10px">Question suivante</button>
+            `;
+
+            document.querySelectorAll('.options button').forEach(button => button.disabled = true);
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const percentage = (score / questions.length) * 100;
+            const resultDiv = document.getElementById('result');
+            const questionContainer = document.getElementById('question-container');
+            questionContainer.style.display = 'none';
+            resultDiv.style.display = 'block';
+            document.querySelector('.thanks-section').style.display = 'block';
+
+            let message;
+            if (percentage >= 80) {
+                message = "Excellent ! Vous maîtrisez très bien les concepts de l'animation socioculturelle !";
+            } else if (percentage >= 60) {
+                message = "Bien ! Vous avez une bonne compréhension des principes de base.";
+            } else {
+                message = "Continuez à apprendre ! L'animation socioculturelle est un domaine riche et complexe.";
+            }
+
+            resultDiv.innerHTML = `
+                <h2>Quizz terminé !</h2>
+                <p>Votre score : ${score}/${questions.length} (${percentage}%)</p>
+                <p>${message}</p>
+                <div class="pixel-art rainbow-text">
+  /\\___/\\
+ (  o o  )
+ (  =^=  ) 
+  (--m--)
+</div>
+                <button onclick="resetQuizz()">Recommencer le quiz</button>
+            `;
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            const resultDiv = document.getElementById('result');
+            const questionContainer = document.getElementById('question-container');
+            document.querySelector('.thanks-section').style.display = 'none';
+            resultDiv.style.display = 'none';
+            questionContainer.style.display = 'block';
+            displayQuestion();
+        }
+    </script>
+</body>
+</html>
